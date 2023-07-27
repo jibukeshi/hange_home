@@ -1,0 +1,464 @@
+require "import"
+import "android.app.*"
+import "android.os.*"
+import "android.widget.*"
+import "android.view.*"
+import "weibox"
+
+
+layout=--常规框架
+{
+  LinearLayout;--线性控件
+  orientation='vertical';--布局方向
+  layout_width='fill';--布局宽度
+  layout_height='fill';--布局高度
+  background=背景色;--布局背景
+  --状态栏开始
+  {
+    LinearLayout;--线性控件
+    orientation='horizontal';--布局方向
+    layout_width='fill';--布局宽度
+    layout_height=获取状态栏高度();--布局高度
+    background=顶栏背景色;--布局背景
+  };
+  --状态栏结束
+  --顶栏开始
+  {
+    LinearLayout;--线性控件
+    orientation='horizontal';--布局方向
+    layout_width='fill';--布局宽度
+    layout_height='60dp';--布局高度
+    background=顶栏背景色;--布局背景
+    gravity='center';--控件内容的重力方向
+    --左:left 右:right 中:center 顶:top 底:bottom
+    --菜单按钮开始
+    {
+      LinearLayout;--线性控件
+      orientation='horizontal';--布局方向
+      layout_width='30dp';--布局宽度
+      layout_height='30dp';--布局高度
+      gravity='center';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      id='back';--控件ID
+      layout_margin='10dp';--控件外边距
+      {
+        ImageView;--图片控件
+        layout_width='25dp';--图片宽度
+        layout_height='25dp';--图片高度
+        src='drawable/arrow_back_black.png';--图片路径
+        --id='Image';--设置控件ID
+        ColorFilter=顶栏主文本色;--图片着色
+        --ColorFilter=Color.BLUE;--设置图片着色
+        scaleType='fitXY';--图片拉伸
+        layout_gravity='center';--重力
+      };
+    };
+    --返回按钮结束
+    --标题开始
+    {
+      LinearLayout;--线性控件
+      orientation='vertical';--布局方向
+      layout_width='fill';--布局宽度
+      layout_height='55dp';--布局高度
+      gravity='center';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      layout_margin='5dp';--控件外边距
+      layout_weight='1';--权重值
+      {
+        TextView;--文本控件
+        layout_width='fill';--控件宽度
+        layout_height='wrap';--控件高度
+        text='外观风格';--显示文字
+        textSize='18sp';--文字大小
+        textColor=顶栏主文本色;--文字颜色
+        id='title';--设置控件ID
+        singleLine=true;--设置单行输入
+        ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center|left';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+      };
+    };
+    --标题结束
+  };
+  --顶栏结束
+  {
+    TextView;--横向分割线
+    layout_width='fill';--分割线宽度
+    layout_height='2px';--分割线厚度
+    layout_gravity='center';--高度居中
+    backgroundColor=分割线色;--分割线颜色
+  };
+  {
+    LinearLayout;--线性控件
+    orientation='horizontal';--布局方向
+    layout_width='fill';--布局宽度
+    layout_height='wrap';--布局高度
+    gravity='center|top';--控件内容的重力方向
+    --左:left 右:right 中:center 顶:top 底:bottom
+    {
+      LinearLayout;--线性控件
+      orientation='vertical';--布局方向
+      layout_width='50%w';--布局宽度
+      layout_height='wrap';--布局高度
+      gravity='center';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      {
+        MaterialCardView;--卡片控件
+        layout_width='45%w';--卡片宽度
+        layout_height='wrap';--卡片高度
+        cardBackgroundColor=背景色;--卡片颜色
+        layout_margin='10dp';--卡片边距
+        cardElevation='0dp';--卡片阴影
+        radius='10dp';--卡片圆角
+        id='card1';--设置控件ID
+        strokeColor=主题色;--边框颜色
+        {
+          CardView;--卡片控件
+          layout_width='fill';--卡片宽度
+          layout_height='wrap';--卡片高度
+          cardBackgroundColor=卡片色;--卡片颜色
+          layout_margin='10dp';--卡片边距
+          cardElevation='0dp';--卡片阴影
+          radius='10dp';--卡片圆角
+          layout_margin='5dp';--控件外边距
+          {
+            ImageView;--图片控件
+            layout_width='fill';--图片宽度
+            layout_height='wrap';--图片高度
+            src='new.png';--图片路径
+            --id='Image';--设置控件ID
+            --ColorFilter='';--图片着色
+            --ColorFilter=Color.BLUE;--设置图片着色
+            scaleType='fitCenter';--图片拉伸
+            layout_gravity='center';--重力
+          };
+        };
+      };
+      {
+        TextView;--文本控件
+        layout_width='45%w';--控件宽度
+        layout_height='wrap';--控件高度
+        text='新版';--显示文字
+        textSize='18sp';--文字大小
+        textColor=主文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='5dp';--控件外边距
+      };
+      {
+        TextView;--文本控件
+        layout_width='45%w';--控件宽度
+        layout_height='wrap';--控件高度
+        text='极简蓝白风，微箱萌盒同款UI';--显示文字
+        textSize='14sp';--文字大小
+        textColor=辅文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='5dp';--控件外边距
+      };
+    };
+    {
+      LinearLayout;--线性控件
+      orientation='vertical';--布局方向
+      layout_width='50%w';--布局宽度
+      layout_height='wrap';--布局高度
+      gravity='center';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      {
+        MaterialCardView;--卡片控件
+        layout_width='45%w';--卡片宽度
+        layout_height='wrap';--卡片高度
+        cardBackgroundColor=背景色;--卡片颜色
+        layout_margin='10dp';--卡片边距
+        cardElevation='0dp';--卡片阴影
+        radius='10dp';--卡片圆角
+        id='card2';--设置控件ID
+        strokeColor=主题色;--边框颜色
+        {
+          CardView;--卡片控件
+          layout_width='fill';--卡片宽度
+          layout_height='wrap';--卡片高度
+          cardBackgroundColor=卡片色;--卡片颜色
+          layout_margin='10dp';--卡片边距
+          cardElevation='0dp';--卡片阴影
+          radius='10dp';--卡片圆角
+          layout_margin='5dp';--控件外边距
+          {
+            ImageView;--图片控件
+            layout_width='fill';--图片宽度
+            layout_height='wrap';--图片高度
+            src='old.png';--图片路径
+            --id='Image';--设置控件ID
+            --ColorFilter='';--图片着色
+            --ColorFilter=Color.BLUE;--设置图片着色
+            scaleType='fitCenter';--图片拉伸
+            layout_gravity='center';--重力
+          };
+        };
+      };
+      {
+        TextView;--文本控件
+        layout_width='45%w';--控件宽度
+        layout_height='wrap';--控件高度
+        text='经典';--显示文字
+        textSize='18sp';--文字大小
+        textColor=主文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='5dp';--控件外边距
+      };
+      {
+        TextView;--文本控件
+        layout_width='45%w';--控件宽度
+        layout_height='wrap';--控件高度
+        text='一个函鸽经典，高仿一个木函UI';--显示文字
+        textSize='14sp';--文字大小
+        textColor=辅文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='5dp';--控件外边距
+      };
+    };
+  };
+  {
+    TextView;--横向分割线
+    layout_width='fill';--分割线宽度
+    layout_height='2px';--分割线厚度
+    layout_gravity='center';--高度居中
+    backgroundColor=分割线色;--分割线颜色
+    layout_marginTop='5dp';--布局顶距
+    layout_marginBottom='5dp';--布局底距
+  };
+  {
+    CardView;--卡片控件
+    layout_width='fill';--卡片宽度
+    layout_height='wrap';--卡片高度
+    cardBackgroundColor=背景色;--卡片颜色
+    cardElevation='0dp';--卡片阴影
+    radius='0dp';--卡片圆角
+    {
+      LinearLayout;--线性控件
+      orientation='horizontal';--布局方向
+      layout_width='fill';--布局宽度
+      layout_height='wrap';--布局高度
+      gravity='center|left';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      padding='5dp';--控件内边距
+      id='setting1';--设置控件ID
+      {
+        ImageView;--图片控件
+        layout_width='30dp';--图片宽度
+        layout_height='30dp';--图片高度
+        src='drawable/photo_library_black.png';--图片路径
+        --id='Image';--设置控件ID
+        ColorFilter=主题色;--图片着色
+        --ColorFilter=Color.BLUE;--设置图片着色
+        scaleType='fitXY';--图片拉伸
+        layout_gravity='center';--重力
+        layout_margin='10dp';--控件外边距
+      };
+      {
+        TextView;--文本控件
+        layout_width='wrap';--控件宽度
+        layout_height='wrap';--控件高度
+        text='图标改为一个函鸽图标';--显示文字
+        textSize='18sp';--文字大小
+        textColor=主文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center|left';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='10dp';--控件外边距
+        layout_weight='1';--权重值分配
+      };
+      {
+        Switch;--开关控件
+        layout_width='wrap';--控件宽度
+        layout_height='wrap';--控件高度
+        id='setting1check';--设置控件ID
+        --text='本文内容';--显示文字
+        --textSize='16sp';--文字大小
+        --textColor='#333333';--文字颜色
+        gravity='center';--重力
+        --SwitchMinWidth='0dp';--开关最小宽度
+        --SwitchPadding='0dp';--开关与文字的间距
+        --showText=true;--开关上是否显示文字
+        checked=activity.getSharedData("改图标");--代码中设置复选框初始化状态
+        --enabled=false ;--设置复选框为灰色,默认不可点击
+        clickable=false;--设置复选框为彩色，默认不可点击
+        Focusable=false;
+        layout_margin='10dp';--控件外边距
+      };
+    };
+  };
+  {
+    CardView;--卡片控件
+    layout_width='fill';--卡片宽度
+    layout_height='wrap';--卡片高度
+    cardBackgroundColor=背景色;--卡片颜色
+    cardElevation='0dp';--卡片阴影
+    radius='0dp';--卡片圆角
+    {
+      LinearLayout;--线性控件
+      orientation='horizontal';--布局方向
+      layout_width='fill';--布局宽度
+      layout_height='wrap';--布局高度
+      gravity='center|left';--控件内容的重力方向
+      --左:left 右:right 中:center 顶:top 底:bottom
+      padding='5dp';--控件内边距
+      id='setting2';--设置控件ID
+      {
+        ImageView;--图片控件
+        layout_width='30dp';--图片宽度
+        layout_height='30dp';--图片高度
+        src='drawable/home_black.png';--图片路径
+        --id='Image';--设置控件ID
+        ColorFilter=主题色;--图片着色
+        --ColorFilter=Color.BLUE;--设置图片着色
+        scaleType='fitXY';--图片拉伸
+        layout_gravity='center';--重力
+        layout_margin='10dp';--控件外边距
+      };
+      {
+        TextView;--文本控件
+        layout_width='wrap';--控件宽度
+        layout_height='wrap';--控件高度
+        text='应用名称改为一个函鸽';--显示文字
+        textSize='18sp';--文字大小
+        textColor=主文本色;--文字颜色
+        --id='Text';--设置控件ID
+        --singleLine=true;--设置单行输入
+        --ellipsize='end';--多余文字用省略号显示
+        --start 开始 middle 中间 end 结尾
+        --Typeface=Typeface.DEFAULT;--字体
+        --textIsSelectable=true;--文本可复制
+        --style="?android:attr/buttonBarButtonStyle";--点击特效
+        gravity='center|left';--重力
+        --左:left 右:right 中:center 顶:top 底:bottom
+        layout_margin='10dp';--控件外边距
+        layout_weight='1';--权重值分配
+      };
+      {
+        Switch;--开关控件
+        layout_width='wrap';--控件宽度
+        layout_height='wrap';--控件高度
+        id='setting2check';--设置控件ID
+        --text='本文内容';--显示文字
+        --textSize='16sp';--文字大小
+        --textColor='#333333';--文字颜色
+        gravity='center';--重力
+        --SwitchMinWidth='0dp';--开关最小宽度
+        --SwitchPadding='0dp';--开关与文字的间距
+        --showText=true;--开关上是否显示文字
+        checked=activity.getSharedData("改名称");--代码中设置复选框初始化状态
+        --enabled=false ;--设置复选框为灰色,默认不可点击
+        clickable=false;--设置复选框为彩色，默认不可点击
+        Focusable=false;
+        layout_margin='10dp';--控件外边距
+      };
+    };
+  };
+}
+
+activity.setContentView(loadlayout(layout))
+
+
+波纹(back,转0x(波纹色))
+back.onClick=function()
+  退出页面()
+  activity.newActivity("main.lua")--建议重载主窗口
+end
+
+if(activity.getSharedData("外观风格")==0)then
+  setting1.setVisibility(View.GONE)
+  setting2.setVisibility(View.GONE)
+  card1.setStrokeWidth(5)
+  card2.onClick=function()
+    activity.setSharedData("外观风格",1)
+    if(activity.getSharedData("主题")=="默认蓝")then
+      activity.setSharedData("主题","函鸽绿")
+      activity.setSharedData("主题色","#FF78BD9A")
+    end
+    activity.recreate()
+  end
+end
+if(activity.getSharedData("外观风格")==1)then
+  setting1.setVisibility(View.VISIBLE)
+  setting2.setVisibility(View.VISIBLE)
+  card2.setStrokeWidth(5)
+  card1.onClick=function()
+    activity.setSharedData("外观风格",0)
+    if(activity.getSharedData("主题")=="函鸽绿")then
+      activity.setSharedData("主题","默认蓝")
+      activity.setSharedData("主题色","#FF5187F4")
+    end
+    activity.recreate()
+  end
+end
+
+setting1.onClick=function()
+  if(activity.getSharedData("改图标"))then
+    activity.setSharedData("改图标",false)
+    setting1check.checked=false
+   else
+    activity.setSharedData("改图标",true)
+    setting1check.checked=true
+  end
+end
+setting2.onClick=function()
+  if(activity.getSharedData("改名称"))then
+    activity.setSharedData("改名称",false)
+    setting2check.checked=false
+   else
+    activity.setSharedData("改名称",true)
+    setting2check.checked=true
+  end
+end
+
+波纹(setting1,转0x(波纹色))
+波纹(setting2,转0x(波纹色))
+
+--返回键
+function onKeyDown(code,event)
+  if(code==4)then
+    退出页面()
+    activity.newActivity("main.lua")--建议重载主窗口
+  end
+end
