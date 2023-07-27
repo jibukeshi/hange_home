@@ -1,0 +1,39 @@
+--名称
+appname="函鸽首页源码"
+--版本号
+appver="1.0.0"
+--版本
+appcode="1"
+--SDK
+appsdk="29"
+--关联
+path_pattern=""
+--软件包名
+packagename="com.weibox.hange"
+--主题
+theme="Theme_DeviceDefault_Light"
+--key
+app_key=""
+--渠道
+app_channel=""
+--作者
+developer="机不可失"
+--描述
+description="函鸽首页布局源码(可切换萌盒木函风格)，附赠功能页、功能搜索、功能收藏、设置页、关于页、主题配色更改，支持两种风格切换"
+--调试模式
+debugmode=true
+--横屏模式
+landscape=false
+--显示状态栏
+显示状态栏=true
+--应用权限
+user_permission={
+  "ACCESS_NETWORK_STATE",
+  "ACCESS_WIFI_STATE",
+  "DOWNLOAD_WITHOUT_NOTIFICATION",
+  "INTERNET",
+  "READ_EXTERNAL_STORAGE",
+  "REQUEST_COMPANION_RUN_IN_BACKGROUND",
+  "VIBRATE",
+  "WRITE_EXTERNAL_STORAGE"
+}
